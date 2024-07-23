@@ -9,11 +9,6 @@ public class IncrementTask implements Runnable {
 
     @Override
     public void run() {
-        // code for increment salary
-        synchronized(Employee.class){
-            Employee.COMPANY_NAME = "ABC Corp.";
-        }
- 
         try {
             employee.incrementSalary();
             System.out.println(employee);
