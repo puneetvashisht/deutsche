@@ -1,0 +1,23 @@
+h6 {
+    color: red;
+    text-decoration: underline;
+}
+.bluetext {
+    color: blue;
+    text-decoration: underline;
+}
+#mainheading {
+    color: green;
+    text-decoration: underline;
+}
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+    font-weight: bold;  
+    border: 2px solid black;
+}
+
+a:link {background-color:#B2FF99;} 
+a:visited {background-color:#FFFF85;} 
+a:hover {background-color:#FF704D;} 
+a:active {background-color:#FF704D;}
