@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Reverse Fn</title>
+    </head>
+    <body>
+        <h2>Some content</h2>
+        <button onclick="reverse()">Reverse Content</button>
+    <script>
+        console.log('hello from js!')
+        function reverse(){
+            console.log('clicked..');
+            let content = document.getElementsByTagName('h2')[0].innerText;
+            let reversedContent = content.split('').reverse().join('');
+            document.getElementsByTagName('h2')[0].innerText = reversedContent;
+        }
+    </script>
+    </body>
+</html>

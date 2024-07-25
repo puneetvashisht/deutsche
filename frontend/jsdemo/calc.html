@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Calculator</title>
+    </head>
+    <body>
+        <input id="oper1" placeholder="Enter Operand 1" type="number"/>
+        <input id="oper2" placeholder="Enter Operand 2" type="number"/>
+        <input type="text"/>
+        <button onclick="add()"> + </button>
+        <button onclick="subtract()"> - </button>
+        <p id="result"></p>
+
+        <script>
+            function add(){
+                let num1 = document.getElementById('oper1').value;
+                let num2 = document.getElementById('oper2').value;
+                let result = parseInt(num1) + parseInt(num2);   
+                console.log(result);  
+                document.getElementById('result').innerText = result
+            };
+            function subtract(){
+                let num1 = document.getElementById('oper1').value;
+                let num2 = document.getElementById('oper2').value;
+                let result = parseInt(num1) - parseInt(num2);   
+                console.log(result);  
+                document.getElementById('result').innerText = result
+            };
+        </script>
+    </body>
+</html>

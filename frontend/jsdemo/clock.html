@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Clock</title>
+    </head>
+    <body>
+        <h2 id="clock">25th July 2024 10:00:00</h2>
+
+        <script>
+            setInterval(function(){
+                var today = new Date();
+                var str = `${today.getHours()} : ${today.getMinutes()} : ${today.getSeconds()}`
+                document.getElementById('clock').innerText = str;
+            }, 1000)
+            
+        </script>
+    </body>
+</html>
