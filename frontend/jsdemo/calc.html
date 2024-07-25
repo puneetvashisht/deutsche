@@ -5,12 +5,19 @@
     <body>
         <input id="oper1" placeholder="Enter Operand 1" type="number"/>
         <input id="oper2" placeholder="Enter Operand 2" type="number"/>
-        <input type="text"/>
+        <input id="text" type="text"/>
         <button onclick="add()"> + </button>
         <button onclick="subtract()"> - </button>
+        <button onclick="capitalize()"> Capitalize Text</button>
         <p id="result"></p>
 
         <script>
+
+            function capitalize(){
+                let text = document.getElementById('text').value;
+                let capitalizedText = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+                document.getElementById('result').innerText = capitalizedText;
+            }
             function add(){
                 let num1 = document.getElementById('oper1').value;
                 let num2 = document.getElementById('oper2').value;
