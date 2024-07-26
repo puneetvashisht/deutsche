@@ -1,17 +1,43 @@
 import { useState , useEffect} from "react";
+import { Link, useRouteMatch } from'react-router-dom';
+import axios from 'axios';
 const ViewEmployees = () => {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // Fetch data on component mount and whenever the data changes (employees array)
+    const fetchEmployees = async () => {
+        const response = await axios.get('http://localhost:8000/employees');
+        setEmployees(response.data);
+        setLoading(false);
+
+        //  axios.get('http://localhost:8000/employees')
+        // .then(response => {
+        //     setEmployees(response.data);
+        //     setLoading(false);
+        // })
+    }
+
+
     useEffect(() => {
-        fetch('http://localhost:8000/employees')
-            .then(response => response.json())
-            .then(data => {
-                setEmployees(data);
-                setLoading(false);
-            })
-            .catch(error => console.error('Error:', error));
+        fetchEmployees();
+        // const response = await axios.get('http://localhost:8000/employees');
+        // setEmployees(response.data);
+        // setLoading(false);
+
+        // axios.get('http://localhost:8000/employees')
+        // .then(response => {
+        //     setEmployees(response.data);
+        //     setLoading(false);
+        // })
+
+        // fetch('http://localhost:8000/employees')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         setEmployees(data);
+        //         setLoading(false);
+        //     })
+        //     .catch(error => console.error('Error:', error));
     }, []);
 
     const deleteEmployee = (id) => {
@@ -33,7 +59,7 @@ const ViewEmployees = () => {
          (
             <tr key={employee.id}>
                 <td>{employee.id}</td>
-                <td>{employee.name}</td>
+                <td><Link to={`update/${employee.id}`} className="btn btn-primary">{employee.name}</Link></td>
                 <td>{employee.department}</td> 
                 <td><button onClick={()=>deleteEmployee(employee.id)} className="btn btn-danger"> X </button></td> 
             </tr>

@@ -8,6 +8,21 @@
     {
       "id": "31f2",
       "name": "Suzzane",
+      "department": "ADMIN"
+    },
+    {
+      "id": "61f9",
+      "name": "Puneet",
+      "department": "IT"
+    },
+    {
+      "id": "01db",
+      "name": "Amit",
+      "department": "IT"
+    },
+    {
+      "id": "f79a",
+      "name": "Puneet",
       "department": "Finance"
     }
   ]
