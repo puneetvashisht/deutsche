@@ -6,6 +6,7 @@ const Badge = (props) => {
 
     const incrementCount = () => {
         setCount(count + 1);
+        // props.caption = 3
     }
 
     return (
