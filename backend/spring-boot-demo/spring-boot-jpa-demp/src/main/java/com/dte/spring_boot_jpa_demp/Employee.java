@@ -1,9 +1,16 @@
-package com.dte.spring_boot_demo;
-class Employee {
+package com.dte.spring_boot_jpa_demp;
 
-    
-    private String name;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.AUTO)  // This will auto-
     private int id;
+    private String name;
     private double salary;
 
     public Employee() {
@@ -32,8 +39,4 @@ class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-
-    //getter and setters
-    
-    
 }

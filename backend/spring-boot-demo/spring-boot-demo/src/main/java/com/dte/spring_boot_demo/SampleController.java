@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SampleController {
     List<Employee> employees = new ArrayList<>();
 
+    EmployeeRepo employeeRepo = new EmployeeRepo();
+
     {
         employees.add(new Employee("John Doe", 1, 50000));
         employees.add(new Employee("Jane Doe", 2, 60000));
@@ -22,7 +24,8 @@ public class SampleController {
 
     @RequestMapping(path="/employees", method=RequestMethod.GET)
     public List<Employee> fetchEmployees(){
-        return this.employees;
+        // return this.employees;
+       return employeeRepo.fetchEmployees();
     }
 
 
