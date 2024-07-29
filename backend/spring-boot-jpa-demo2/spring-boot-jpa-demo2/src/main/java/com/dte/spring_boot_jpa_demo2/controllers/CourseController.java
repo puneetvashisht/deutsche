@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dte.spring_boot_jpa_demo2.entities.Course;
 import com.dte.spring_boot_jpa_demo2.repos.CourseRepository;
+import com.dte.spring_boot_jpa_demo2.services.CourseService;
+import com.dte.spring_boot_jpa_demo2.services.ICourseService;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -22,6 +25,11 @@ public class CourseController {
     @Autowired
     CourseRepository courseRepository;
 
+    // CourseService courseService = new CourseService();
+
+    @Autowired
+    ICourseService courseService;
+
     @GetMapping("/courses")
     public List<Course> getCoursesList(){
         return courseRepository.findAll();
@@ -30,6 +38,9 @@ public class CourseController {
     @ResponseStatus(HttpStatus.CREATED)  // 201 Created status code indicates that the request has
     @PostMapping("/courses")
     public void addCourse(@RequestBody Course course) {
+        courseService.someLogic();  // call service method if needed
+
+       // course.setId(null);  // if id is not provided by client, set it to null in entity before saving
        courseRepository.save(course);
     }
 
