@@ -11,13 +11,18 @@ import com.dte.spring_boot_jpa_demo2.entities.Course;
 import com.dte.spring_boot_jpa_demo2.repos.CourseRepository;
 import com.dte.spring_boot_jpa_demo2.services.CourseService;
 import com.dte.spring_boot_jpa_demo2.services.ICourseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 
 
 @RestController
 @RequestMapping("/api/v1/courses")
+@CrossOrigin
 public class CourseController {
     
     @Autowired
@@ -28,6 +33,8 @@ public class CourseController {
     @Autowired
     ICourseService courseService;
 
+
+  
     @GetMapping("/")
     public List<Course> getCoursesList(){
         return courseRepository.findAll();
@@ -55,6 +62,15 @@ public class CourseController {
         }
     }
 
+    @Operation(summary = "Fetch A Course")
+    @ApiResponses (value = {
+         @ApiResponse(responseCode = "200", description = "Found the course", 
+    content = { @Content(mediaType = "application/json", 
+      schema = @Schema(implementation = Course.class)) }),
+  @ApiResponse(responseCode = "400", description = "Invalid id supplied", 
+    content = @Content), 
+  @ApiResponse(responseCode = "404", description = "Course not found", 
+    content = @Content) })
     @GetMapping("/{id}")
     public Course getCourseById(@PathVariable Long id){
         // return courseRepository.findById(id).orElseThrow(new RuntimeException("Course not found with id: " + id)  );
