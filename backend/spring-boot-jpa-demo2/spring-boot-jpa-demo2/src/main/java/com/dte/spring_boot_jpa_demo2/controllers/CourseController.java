@@ -3,6 +3,8 @@ package com.dte.spring_boot_jpa_demo2.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +13,24 @@ import com.dte.spring_boot_jpa_demo2.entities.Course;
 import com.dte.spring_boot_jpa_demo2.repos.CourseRepository;
 import com.dte.spring_boot_jpa_demo2.services.CourseService;
 import com.dte.spring_boot_jpa_demo2.services.ICourseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 
 
 
 @RestController
 @RequestMapping("/api/v1/courses")
+// @RefreshScope
 public class CourseController {
     
+
+        Logger logger = LoggerFactory.getLogger(CourseController.class);
+
     @Autowired
     CourseRepository courseRepository;
 
@@ -51,9 +62,20 @@ public class CourseController {
             courseRepository.save(c);
         }
         else{
+            logger.warn("Course not found with id: " + id);
             throw new CourseNotFoundException(id);
         }
     }
+
+    @Operation(summary = "Get a course by its id")
+@ApiResponses(value = { 
+  @ApiResponse(responseCode = "200", description = "Found the course", 
+    content = { @Content(mediaType = "application/json", 
+      schema = @Schema(implementation = Course.class)) }),
+  @ApiResponse(responseCode = "400", description = "Invalid id supplied", 
+    content = @Content), 
+  @ApiResponse(responseCode = "404", description = "Course not found", 
+    content = @Content) })
 
     @GetMapping("/{id}")
     public Course getCourseById(@PathVariable Long id){
@@ -61,10 +83,22 @@ public class CourseController {
         // find by id else throw custom exception
         return courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException(id));
     }
+    // get course containing given description
+    @GetMapping("/description")
+    public List<Course> fetchCourseByDescription(@RequestParam String description) {
+        return courseRepository.findByDescriptionContaining(description);
+    }
+    // get course greater than given price
+    @GetMapping("/price_greater")
+    public List<Course> fetchCourseByPriceGreaterThan(@RequestParam double price) {
+        return courseRepository.findByPriceGreaterThan(price);
+    }
+    
 
     @GetMapping("/search")
     public Course fetchCourseByTitle(@RequestParam String title, @RequestParam double price) {
-        System.out.println("title to be fetched: " + title);
+        // System.out.println("title to be fetched: " + title);
+        logger.debug("title to be fetched: " + title);
         return courseRepository.findByTitleAndPrice(title, price);
 
     }
