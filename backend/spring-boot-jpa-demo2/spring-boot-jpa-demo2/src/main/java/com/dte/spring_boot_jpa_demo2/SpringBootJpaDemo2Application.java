@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.dte.spring_boot_jpa_demo2.services.CourseService;
 
+
 @SpringBootApplication
 public class SpringBootJpaDemo2Application {
 

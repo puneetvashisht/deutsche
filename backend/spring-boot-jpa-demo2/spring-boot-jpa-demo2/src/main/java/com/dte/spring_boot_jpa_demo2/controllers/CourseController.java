@@ -22,10 +22,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 
 
-
 @RestController
 @RequestMapping("/api/v1/courses")
-// @RefreshScope
+@CrossOrigin
 public class CourseController {
     
 
@@ -39,6 +38,8 @@ public class CourseController {
     @Autowired
     ICourseService courseService;
 
+
+  
     @GetMapping("/")
     public List<Course> getCoursesList(){
         return courseRepository.findAll();
@@ -77,6 +78,15 @@ public class CourseController {
   @ApiResponse(responseCode = "404", description = "Course not found", 
     content = @Content) })
 
+    @Operation(summary = "Fetch A Course")
+    @ApiResponses (value = {
+         @ApiResponse(responseCode = "200", description = "Found the course", 
+    content = { @Content(mediaType = "application/json", 
+      schema = @Schema(implementation = Course.class)) }),
+  @ApiResponse(responseCode = "400", description = "Invalid id supplied", 
+    content = @Content), 
+  @ApiResponse(responseCode = "404", description = "Course not found", 
+    content = @Content) })
     @GetMapping("/{id}")
     public Course getCourseById(@PathVariable Long id){
         // return courseRepository.findById(id).orElseThrow(new RuntimeException("Course not found with id: " + id)  );

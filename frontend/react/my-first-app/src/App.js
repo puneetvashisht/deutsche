@@ -9,18 +9,22 @@ import AddEmployee from './AddEmployee';
 import { Route, Routes, Link, Outlet } from 'react-router-dom';
 import Toast from './Toast';
 import About from './About';
+import ViewCourses from './ViewCourses';
 function App() {
   return (
     <>
       <ul className="nav">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/">View Employees</Link>
+          <Link className="nav-link active" aria-current="page" to="/">View Courses</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/add">Add Employee</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/aboutus">About Us</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/employees">View Employees</Link>
         </li>
 
       </ul>
@@ -33,8 +37,9 @@ function App() {
           <Route path="aboutus" element={<About />} />
           <Route path="update/:id" element={<AddEmployee />} />
           <Route path="*" element={<NoMatch />} />
-          <Route path="/" element={<ViewEmployees />}>
-        </Route>
+          <Route path="/employees" element={<ViewEmployees />} />
+          <Route path="/" element={<ViewCourses />} />
+     
       </Routes>
 
       {/* <Message />
