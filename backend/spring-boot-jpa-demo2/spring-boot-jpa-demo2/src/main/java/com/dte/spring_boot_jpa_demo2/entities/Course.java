@@ -1,5 +1,7 @@
 package com.dte.spring_boot_jpa_demo2.entities;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +17,19 @@ public class Course {
     // @Column(name="desc")
     private String description;
     private double price;
+    private LocalDateTime createdAt;
+    //generate getters and setter
+    
+
+    //generate constructor
+    public Course() {
+    }
+    //generate constructor with parameters
+    public Course(String title, String description, double price) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+    }
     public Long getId() {
         return id;
     }
@@ -38,6 +53,16 @@ public class Course {
     }
     public void setPrice(double price) {
         this.price = price;
+    }
+    @Override
+    public String toString() {
+        return "Course [id=" + id + ", title=" + title + ", description=" + description + ", price=" + price + "]";
+    }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     

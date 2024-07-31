@@ -1,0 +1,218 @@
+-- Table structure for table `user_roles`
+--
+
+DROP TABLE IF EXISTS `user_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_roles` (
+  `user_id` bigint(20) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `FKrhfovtciq1l558cw6udg0h0d3` (`role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+LOCK TABLES `user_roles` WRITE;
+/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
+INSERT INTO `user_roles` VALUES (1,2),(2,1),(3,1),(4,1),(5,2);
+/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `password` varchar(1200) DEFAULT NULL,
+  `subscribed` bit(1) DEFAULT NULL,
+  `subscription_end_date` date DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKr43af9ap4edm43mmtq01oddj6` (`username`),
+  UNIQUE KEY `UK6dotkott2kjsp8vw4d0m25fb7` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'s@gmail.com','https://storage.googleapis.com/download/storage/v1/b/domshom-web-273102.appspot.com/o/1598694009755_file?generation=1598694010746065&alt=media','$2a$10$VkBjtLJBU6zn7mC2leOgdORqR7P9tzfRNq/cNEGSmZR5NpQ7Y2WLu','\0',NULL,'saiyam'),(2,'Ttest1@t.t','https://storage.googleapis.com/download/storage/v1/b/domshom-web-273102.appspot.com/o/1598694009755_file?generation=1598694010746065&alt=media','$2a$10$oP3UuBerbt6QjzepV5bsROgUapoO5fik0Igd/smbDz7ttfSbt/gaa','','2020-09-20','test1'),(3,'test2@t.com','https://storage.googleapis.com/download/storage/v1/b/domshom-web-273102.appspot.com/o/1598694009755_file?generation=1598694010746065&alt=media','$2a$10$egjsvWsebeUIbOw.v5ioQexS52j4jFh4PSB6J37po2PUER9IkHIXG','','2020-09-19','test2'),(4,'test3@test.com','https://storage.googleapis.com/download/storage/v1/b/domshom-web-273102.appspot.com/o/1598694009755_file?generation=1598694010746065&alt=media','$2a$10$5gkGU8z3OdbPYNLDq5jiSe4Ub4hTYFjrNyJPOs7f5KKczHcavt1nW','','2020-10-18','test3'),(5,'admin@gmail.com','https://storage.googleapis.com/download/storage/v1/b/domshom-web-273102.appspot.com/o/1598694009755_file?generation=1598694010746065&alt=media','$2a$10$khzJIruEoLzlUf.rPO2GbONozolUIlCAH4amPUNGah1cUqVTmStkK','\0',NULL,'admin');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_user_details`
+--
+
+DROP TABLE IF EXISTS `users_user_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users_user_details` (
+  `user_id` bigint(20) NOT NULL,
+  `user_details_id` int(11) NOT NULL,
+  UNIQUE KEY `UK_lndx0gr0irnjx1i70r1sgqtl1` (`user_details_id`),
+  KEY `FK5riak6ck1wptmqtplk0brh0ox` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_user_details`
+--
+
+LOCK TABLES `users_user_details` WRITE;
+/*!40000 ALTER TABLE `users_user_details` DISABLE KEYS */;
+INSERT INTO `users_user_details` VALUES (2,4),(2,2),(2,1),(2,3),(3,6),(3,5),(2,7),(3,8);
+/*!40000 ALTER TABLE `users_user_details` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workout`
+--
+
+DROP TABLE IF EXISTS `workout`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workout` (
+  `id` int(11) NOT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `workout_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workout`
+--
+
+LOCK TABLES `workout` WRITE;
+/*!40000 ALTER TABLE `workout` DISABLE KEYS */;
+INSERT INTO `workout` VALUES (4,'A full body workout aims to hit all the major muscle groups in one single session. Here in this section you will get 15 mins workout programs that would include exercises for back, legs, chest, shoulders, arms and core.','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600499270678_full_body_workout1.jpg?generation=1600499275797986&alt=media','Full Body Workout'),(14,'Working out legs & glutes is really essential as they are those muscles group that keeps you moving all day. So, it is essential to build strength in lower half. Here in this video section you will get 15 mins different workout programs to strengthen & tone major lower muscles group like legs, glutes, hamstrings & quad.','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600513457243_legs_gluts1.jpg?generation=1600513460058334&alt=media','Legs & Glutes Workout'),(15,'Wake up your Abs, build strength & stability of Core muscles with 15 minutes different workout programs. No need of equipment. Get flat abs with these cardio and strengthening core workouts.','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600513484350_abs.jpg?generation=1600513484714177&alt=media','Core & Abs Workout'),(16,'15 mins upper body workout programs that tone your arms, chest & back muscles. Here you will get lots of new exercises and variations without use of any equipment.','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600513521963_upper_body.jpg?generation=1600513522371678&alt=media','Upper body workout'),(17,'This section includes different equipment training programs to strengthen & tone your body. You can do easily at home without hitting gym.','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600513549381_equip.jpg?generation=1600513550022368&alt=media','Workouts With Equipments'),(18,'If you are too busy and literally dont have time for Workouts but wanna loose weight & look fit & toned then you must go through this section. Here you will get 15 mins quick workout programs that target all major muscles group in your body.','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600513583540_minutes15.jpg?generation=1600513584406868&alt=media','Quick 15 minutes Workout');
+/*!40000 ALTER TABLE `workout` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workout_video`
+--
+
+DROP TABLE IF EXISTS `workout_video`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workout_video` (
+  `id` int(11) NOT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `video_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workout_video`
+--
+
+LOCK TABLES `workout_video` WRITE;
+/*!40000 ALTER TABLE `workout_video` DISABLE KEYS */;
+INSERT INTO `workout_video` VALUES (5,'User is subscribed','Test-Subscribed','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600499528947_videoplayback%20(1).mp4?generation=1600499542400720&alt=media');
+/*!40000 ALTER TABLE `workout_video` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workout_video_demo`
+--
+
+DROP TABLE IF EXISTS `workout_video_demo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workout_video_demo` (
+  `id` int(11) NOT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `video_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workout_video_demo`
+--
+
+LOCK TABLES `workout_video_demo` WRITE;
+/*!40000 ALTER TABLE `workout_video_demo` DISABLE KEYS */;
+INSERT INTO `workout_video_demo` VALUES (6,'User is unsubscribed ','Test-Unsubscribed','https://storage.googleapis.com/download/storage/v1/b/zumba-app/o/1600499616230_videoplayback%20(1).mp4?generation=1600499628149143&alt=media');
+/*!40000 ALTER TABLE `workout_video_demo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workout_workout_video`
+--
+
+DROP TABLE IF EXISTS `workout_workout_video`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workout_workout_video` (
+  `workout_id` int(11) NOT NULL,
+  `workout_video_id` int(11) NOT NULL,
+  UNIQUE KEY `UK_rtcd45f4tarspwv0buw5jcvcm` (`workout_video_id`),
+  KEY `FKi3s3va1v042f0qpam3hefcvpg` (`workout_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workout_workout_video`
+--
+
+LOCK TABLES `workout_workout_video` WRITE;
+/*!40000 ALTER TABLE `workout_workout_video` DISABLE KEYS */;
+INSERT INTO `workout_workout_video` VALUES (4,5);
+/*!40000 ALTER TABLE `workout_workout_video` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workout_workout_video_demo`
+--
+
+DROP TABLE IF EXISTS `workout_workout_video_demo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workout_workout_video_demo` (
+  `workout_id` int(11) NOT NULL,
+  `workout_video_demo_id` int(11) NOT NULL,
+  UNIQUE KEY `UK_dh8l83b3pu8s7e2h1uhktyej6` (`workout_video_demo_id`),
+  KEY `FKmggcvhu88prlps4ulicotoy3h` (`workout_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workout_workout_video_demo`
+--
+
+LOCK TABLES `workout_workout_video_demo` WRITE;
+/*!40000 ALTER TABLE `workout_workout_video_demo` DISABLE KEYS */;
+INSERT INTO `workout_workout_video_demo` VALUES (4,6);
+/*!40000 ALTER TABLE `workout_workout_video_demo` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-09-19 17:09:40

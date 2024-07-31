@@ -1,5 +1,6 @@
 package com.dte.spring_boot_jpa_demo2.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-
+import static java.time.LocalDateTime.now;
 
 @RestController
 @RequestMapping("/api/v1/courses")
@@ -36,13 +37,14 @@ public class CourseController {
     // CourseService courseService = new CourseService();
 
     @Autowired
-    ICourseService courseService;
+    CourseService courseService;
 
 
   
     @GetMapping("/")
     public List<Course> getCoursesList(){
-        return courseRepository.findAll();
+        // return courseRepository.findAll();
+        return courseService.getCoursesList();
     }
 
     @ResponseStatus(HttpStatus.CREATED)  // 201 Created status code indicates that the request has
@@ -50,6 +52,7 @@ public class CourseController {
     public void addCourse(@RequestBody Course course) {
         courseService.someLogic();  // call service method if needed
 
+        course.setCreatedAt(LocalDateTime.now());
        // course.setId(null);  // if id is not provided by client, set it to null in entity before saving
        courseRepository.save(course);
     }
@@ -67,16 +70,6 @@ public class CourseController {
             throw new CourseNotFoundException(id);
         }
     }
-
-    @Operation(summary = "Get a course by its id")
-@ApiResponses(value = { 
-  @ApiResponse(responseCode = "200", description = "Found the course", 
-    content = { @Content(mediaType = "application/json", 
-      schema = @Schema(implementation = Course.class)) }),
-  @ApiResponse(responseCode = "400", description = "Invalid id supplied", 
-    content = @Content), 
-  @ApiResponse(responseCode = "404", description = "Course not found", 
-    content = @Content) })
 
     @Operation(summary = "Fetch A Course")
     @ApiResponses (value = {
